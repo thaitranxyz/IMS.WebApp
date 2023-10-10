@@ -31,6 +31,9 @@ namespace IMS.Plugins.EFCore
 
         public async Task UpdateInventoryAsync(Inventory inventory)
         {
+            // Prevent having same inventory name 
+            if (db.Inventories.Any(x => x.InventoryId != inventory.InventoryId && x.InventoryName.Equals(inventory.InventoryName, StringComparison.OrdinalIgnoreCase))) return;
+
             var inv = this.db.Inventories.Find(inventory.InventoryId); 
             if (inv != null)
             {

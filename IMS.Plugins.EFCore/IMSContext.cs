@@ -26,7 +26,7 @@ namespace IMS.Plugins.EFCore
                     Price = 1000, 
                     Quantity = 3
                 },
-                new Inventory
+                new Inventory 
                 {
                     InventoryId = 2,
                     InventoryName = "Body",

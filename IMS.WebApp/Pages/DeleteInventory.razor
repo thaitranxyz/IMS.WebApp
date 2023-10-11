@@ -1,0 +1,47 @@
+﻿@page "/deleteinventory/{id:int}"
+@inject NavigationManager NavigationManager
+@inject IViewInventoryByIdUseCase ViewInventoryByIdUseCase
+
+<h3>Delete Inventory</h3>
+
+@if (inventory != null)
+{
+        <dt>
+            Inventory Name:
+        </dt>
+        <dd>
+            @inventory.InventoryName
+        </dd>
+        <dt>
+            Inventory Quantity:
+        </dt>
+        <dd>
+            @inventory.Quantity
+        </dd>
+        <dt>
+            Inventory Price:
+        </dt>
+        <dd>
+            @inventory.Price.ToString("c")
+        </dd>
+
+        <button class="btn btn-danger">Confirm Delete</button>
+        <a class="btn btn-light">Cancel</a>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    public Inventory inventory { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        this.inventory = await ViewInventoryByIdUseCase.ExecuteAsync(Id);
+    }
+
+    private void NavigateToIndex()
+    {
+        NavigationManager.NavigateTo("/inventories");
+    }
+
+}

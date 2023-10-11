@@ -36,6 +36,9 @@
                     <td>
                         <button type="button" class="btn btn-light" @onclick="@(() => EditInventory(inv.InventoryId))">Edit</button>
                     </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" @onclick="@(() => DeleteInventory(inv.InventoryId))">Delete</button>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -66,5 +69,10 @@
     private void EditInventory(int id)
     {
         NavigationManager.NavigateTo($"/editinventory/{id}");
+    }
+
+    private void DeleteInventory(int id)
+    {
+        NavigationManager.NavigateTo($"/deleteinventory/{id}");
     }
 }

@@ -44,7 +44,6 @@ namespace IMS.Plugins.EFCore
                 this.db.Inventories.Update(inventory);
                 await this.db.SaveChangesAsync();
             }
-            
         }
 
         public async Task DeleteInventoryAsync(Inventory inventory)

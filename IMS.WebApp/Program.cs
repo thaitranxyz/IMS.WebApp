@@ -1,6 +1,6 @@
 using IMS.Plugins.EFCore;
-using IMS.UseCases;
 using IMS.UseCases.Interfaces;
+using IMS.UseCases.Inventories;
 using IMS.UseCases.PluginInterfaces;
 using IMS.WebApp.Areas.Identity;
 using IMS.WebApp.Data;

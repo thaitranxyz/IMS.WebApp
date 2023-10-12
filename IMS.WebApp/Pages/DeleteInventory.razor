@@ -1,6 +1,7 @@
 ﻿@page "/deleteinventory/{id:int}"
 @inject NavigationManager NavigationManager
 @inject IViewInventoryByIdUseCase ViewInventoryByIdUseCase
+@inject IDeleteInventoryUseCase DeleteInventoryUseCase
 
 <h3>Delete Inventory</h3>
 
@@ -25,7 +26,7 @@
             @inventory.Price.ToString("c")
         </dd>
 
-        <button class="btn btn-danger">Confirm Delete</button>
+        <button class="btn btn-danger" @onclick="@(() => OnDeleteInventory())">Confirm Delete</button>
         <a class="btn btn-light" @onclick=@(()=>NavigateToIndex())>Cancel</a>
 }
 
@@ -37,6 +38,15 @@
     protected override async Task OnInitializedAsync()
     {
         this.inventory = await ViewInventoryByIdUseCase.ExecuteAsync(Id);
+    }
+
+    public async Task OnDeleteInventory()
+    {
+        if (inventory != null)
+        {
+            await DeleteInventoryUseCase.ExecuteAsync(inventory);
+            NavigationManager.NavigateTo("/inventories");
+        }
     }
 
     private void NavigateToIndex()
